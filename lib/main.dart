@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +20,77 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final String _markdownData = """
+
+# Monday
+
+### Chest & Arms
+
+* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+
+# Monday
+
+### Chest & Arms
+
+* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+
+# Monday
+
+### Chest & Arms
+
+* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+
+# Monday
+
+### Chest & Arms
+
+* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
+
+ """;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +98,30 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Markdown Editor'),
       ),
+      body: Column(children: [
+        Expanded(
+            child: SafeArea(
+                child: Markdown(
+          data: _markdownData,
+        )
+        )
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ButtonBar(
+              children: <Widget>[
+                TextButton.icon(onPressed: () {}, icon: const Icon(Icons.preview_sharp),label: const Text("Preview"),),
+              ],
+            ),
+            ButtonBar(
+              children: <Widget>[
+                TextButton.icon(onPressed: () {}, icon: const Icon(Icons.share),label: const Text("Share"),),
+              ],
+            ),
+          ]
+      ),
+      ]),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -46,36 +140,18 @@ class MyHomePage extends StatelessWidget {
             ),
             ListTile(
               title: const Text('Import file'),
-              onTap: () {
-              },
+              onTap: () {},
             ),
             ListTile(
               title: const Text('Share file'),
-              onTap: () {
-              },
+              onTap: () {},
             ),
             ListTile(
               title: const Text('Help'),
-              onTap: () {
-              },
+              onTap: () {},
             ),
           ],
         ),
-      ),
-      body:  Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ButtonBar(
-              children: <Widget>[
-                TextButton.icon(onPressed: () {}, icon: const Icon(Icons.preview_sharp),label: const Text("Preview"),),
-              ],
-            ),
-            ButtonBar(
-              children: <Widget>[
-                TextButton.icon(onPressed: () {}, icon: const Icon(Icons.share),label: const Text("Share"),),
-              ],
-            ),
-          ]
       ),
     );
   }
