@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:md_editor/help.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hamburger Menu Example',
+      routes: {
+        '/':(context)=>const MyHomePage(),
+      },
+      title: 'MD_Editor',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
     );
   }
 }
@@ -148,7 +151,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Help'),
-              onTap: () {},
+              onTap: () {
+                   Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SecondRoute()),
+            );
+              },
             ),
           ],
         ),
