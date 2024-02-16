@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:md_editor/help.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/':(context)=>const MyHomePage(),
+        '/': (context) => const MyHomePage(),
       },
       title: 'MD_Editor',
       theme: ThemeData(
@@ -105,25 +106,30 @@ class _MyHomePageState extends State<MyHomePage> {
         Expanded(
             child: SafeArea(
                 child: Markdown(
-          data: _markdownData,
-        )
-        )
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ButtonBar(
-              children: <Widget>[
-                TextButton.icon(onPressed: () {}, icon: const Icon(Icons.preview_sharp),label: const Text("Preview"),),
-              ],
-            ),
-            ButtonBar(
-              children: <Widget>[
-                TextButton.icon(onPressed: () {}, icon: const Icon(Icons.share),label: const Text("Share"),),
-              ],
-            ),
-          ]
-      ),
+                    data: _markdownData,
+                    onTapLink: (text, url, title) {
+                      launch(url!);
+                    }))),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          ButtonBar(
+            children: <Widget>[
+              TextButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.preview_sharp),
+                label: const Text("Preview"),
+              ),
+            ],
+          ),
+          ButtonBar(
+            children: <Widget>[
+              TextButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.share),
+                label: const Text("Share"),
+              ),
+            ],
+          ),
+        ]),
       ]),
       drawer: Drawer(
         child: ListView(
@@ -152,10 +158,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: const Text('Help'),
               onTap: () {
-                   Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SecondRoute()),
-            );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SecondRoute()),
+                );
               },
             ),
           ],
