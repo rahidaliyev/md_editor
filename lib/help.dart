@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SecondRoute extends StatelessWidget {
-  const SecondRoute({super.key});
+class HelpPage extends StatelessWidget {
+  const HelpPage({super.key});
 final String text = """There are times when an employer will demand that any potential candidate must have certain certifications to be able to apply.
 
 It’s still very much worthwhile to include your certifications even if they’re not specifically mentioned in the job requirements.
