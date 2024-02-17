@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
               TextButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.preview_sharp),
-                label: const Text("Preview"),
+                label: const Text("Edit"),
               ),
             ],
           ),
