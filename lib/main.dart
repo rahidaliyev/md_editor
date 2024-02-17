@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:md_editor/help.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -36,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _markdownData = "";
+  String path = "";
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +92,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Import file'),
-              onTap: () async {getMarkDownData();},
+              onTap: () async {
+                getMarkDownData();
+              },
             ),
             ListTile(
               title: const Text('Share file'),
-              onTap: () {},
+              onTap: () {
+                shareFile(path);
+              },
             ),
             ListTile(
               title: const Text('Help'),
@@ -111,24 +117,34 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-Future<void> getMarkDownData() async {
-  final res = await FilePicker.platform.pickFiles();
-  if (res == null)
-    return;
-  else {
-    if (res.files.first.extension == "md") {
-      final filePath = res.files.first.path;
-      if (filePath != null) {
-        final file = File(filePath);
-        String markdownContent = await file.readAsString();
-        setState(() {
-          _markdownData = markdownContent;
-        });
+  Future<void> getMarkDownData() async {
+    final res = await FilePicker.platform.pickFiles();
+    if (res == null){
+      return;
+    }
+    else {
+      if (res.files.first.extension == "md") {
+        final filePath = res.files.first.path;
+        if (filePath != null) {
+          final file = File(filePath);
+          String markdownContent = await file.readAsString();
+          setState(() {
+            _markdownData = markdownContent;
+            path = filePath;
+          });
+        }
+      } else {
+        print("You can only choose md!!!");
       }
-    } else {
-      print("You can only choose md!!!");
     }
   }
-}
 
+  void shareFile(String filePath) async {
+    filePath = path;
+    if (await File(filePath).exists()) {
+      await Share.shareXFiles([XFile(filePath)]);
+    } else {
+      print('File not found!!!');
+    }
+  }
 }
