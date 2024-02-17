@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -33,69 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String _markdownData = """
-
-# Monday
-
-### Chest & Arms
-
-* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-
-# Monday
-
-### Chest & Arms
-
-* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-
-# Monday
-
-### Chest & Arms
-
-* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-
-# Monday
-
-### Chest & Arms
-
-* [Bench press 4x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Inchline bench dumbell fly 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Bench dumbell fly 3x12](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Chest cable fly 4x10](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Seated dumbell curl 4x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Z-Bar curl 3x15](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Super Set](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Triceps kickbacks](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-  * [Bench Dips](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-* [Over head Triceps extensions](https://youtu.be/XePkXDMfLaY?si=9FY3FnVdZ6wpaw8e)
-
- """;
+  String _markdownData = "";
 
   @override
   Widget build(BuildContext context) {
@@ -150,19 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Import file'),
-              onTap: () async {
-                final res = await FilePicker.platform.pickFiles();
-                if(res == null)
-                  return;
-                else{
-                  if(res.files.first.extension == "md"){
-                    print(res.files.first.path);
-                  }
-                  else{
-                    print("You can only choose md!!!");
-                  }
-                }
-              },
+              onTap: () async {getMarkDownData();},
             ),
             ListTile(
               title: const Text('Share file'),
@@ -182,4 +110,25 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+Future<void> getMarkDownData() async {
+  final res = await FilePicker.platform.pickFiles();
+  if (res == null)
+    return;
+  else {
+    if (res.files.first.extension == "md") {
+      final filePath = res.files.first.path;
+      if (filePath != null) {
+        final file = File(filePath);
+        String markdownContent = await file.readAsString();
+        setState(() {
+          _markdownData = markdownContent;
+        });
+      }
+    } else {
+      print("You can only choose md!!!");
+    }
+  }
+}
+
 }
