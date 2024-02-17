@@ -1,3 +1,4 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:md_editor/help.dart';
@@ -149,7 +150,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ListTile(
               title: const Text('Import file'),
-              onTap: () {},
+              onTap: () async {
+                final res = await FilePicker.platform.pickFiles();
+                if(res == null)
+                  return;
+                else{
+                  if(res.files.first.extension == "md"){
+                    print(res.files.first.path);
+                  }
+                  else{
+                    print("You can only choose md!!!");
+                  }
+                }
+              },
             ),
             ListTile(
               title: const Text('Share file'),
