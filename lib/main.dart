@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ButtonBar(
             children: <Widget>[
               TextButton.icon(
-                onPressed: () {},
+                onPressed: () {shareFile(path);},
                 icon: const Icon(Icons.share),
                 label: const Text("Share"),
               ),
