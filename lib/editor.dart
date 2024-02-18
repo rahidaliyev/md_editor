@@ -7,6 +7,7 @@ class EditPage extends StatefulWidget {
   const EditPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _EditPageState createState() => _EditPageState();
 }
 
@@ -25,7 +26,6 @@ class _EditPageState extends State<EditPage> {
 
   Future<void> _saveAsMarkdown(String content) async {
     final directory = await getExternalStorageDirectory();
-    print(directory.toString());
     final file = File('${directory!.path}/my_file.md');
     await file.writeAsString(content);
   }
