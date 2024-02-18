@@ -45,9 +45,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Markdown Editor'),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {},
-      backgroundColor: Colors.deepPurple,
-      child: const Icon(Icons.add,color: Colors.white),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+              Navigator.of(context).push(_createRoute());
+                  },
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
       body: Column(children: [
         Expanded(
             child: SafeArea(
@@ -69,7 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ButtonBar(
             children: <Widget>[
               TextButton.icon(
-                onPressed: () {shareFile(path);},
+                onPressed: () {
+                  shareFile(path);
+                },
                 icon: const Icon(Icons.share),
                 label: const Text("Share"),
               ),
@@ -122,10 +128,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> getMarkDownData() async {
     final res = await FilePicker.platform.pickFiles();
-    if (res == null){
+    if (res == null) {
       return;
-    }
-    else {
+    } else {
       if (res.files.first.extension == "md") {
         final filePath = res.files.first.path;
         if (filePath != null) {
@@ -150,4 +155,21 @@ class _MyHomePageState extends State<MyHomePage> {
       print('File not found!!!');
     }
   }
+}
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => const HelpPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
