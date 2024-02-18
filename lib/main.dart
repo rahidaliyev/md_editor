@@ -45,6 +45,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('Markdown Editor'),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {},
+      backgroundColor: Colors.deepPurple,
+      child: const Icon(Icons.add,color: Colors.white),),
       body: Column(children: [
         Expanded(
             child: SafeArea(
